@@ -1,0 +1,22 @@
+
+version: 2.1
+jobs:
+  compile:
+   docker:
+      - image: ubuntu:18.04
+   steps:
+      - run:
+          no_output_timeout: 50m
+          command: |
+           apt-get -y update && apt-get -y upgrade && apt-get -y install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex bison
+           git clone --depth=1 https://Danish1999:$PASS@github.com/Danish1999/kernel_asus_sdm660 -b $CIRCLE_BRANCH vortechx
+           cd vortechx
+           git clone --depth=1 https://github.com/Danish1999/scripts-2 -b master kscripts
+           source ./kscripts/envsetup.sh --clang
+           ./kscripts/circle.sh
+           
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - compile

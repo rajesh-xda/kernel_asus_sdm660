@@ -129,16 +129,16 @@ struct gf_dev {
 	unsigned users;
 	signed irq_gpio;
 	signed reset_gpio;
-	signed vdd_gpio;
+	signed pwr_gpio;
 	int irq;
-	bool irq_enabled;
-	bool clk_enabled;
+	int irq_enabled;
+	int clk_enabled;
 #ifdef GF_FASYNC
 	struct fasync_struct *async;
 #endif
 	struct notifier_block notifier;
-	bool device_available;
-	bool fb_black;
+	char device_available;
+	char fb_black;
 };
 
 int gf_parse_dts(struct gf_dev* gf_dev);

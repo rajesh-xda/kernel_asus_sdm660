@@ -14,8 +14,16 @@ menuconfig INPUT_FINGERPRINT
 
 if INPUT_FINGERPRINT
 
+config COMMON_FP
+	bool "Fingerprint common"
+	help
+	  Say Y here if you use common fp.
+
+	  If unsure, say N.
+
 config CDFINGER_FP
 	bool "Fingerprint cdfinger"
+	select COMMON_FP
 	help
 	  Say Y here if you use common fp.
 
@@ -23,6 +31,7 @@ config CDFINGER_FP
 
 config GOODIX_FP
 	bool "Fingerprint goodix"
+	select COMMON_FP
 	help
 	  Say Y here if you use common fp.
 
